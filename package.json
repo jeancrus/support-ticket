@@ -1,0 +1,13 @@
+{
+  "name": "support-ticket",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --watch src/server.js"
+  },
+  "keywords": [],
+  "author": "Jean Crus",
+  "license": "ISC",
+  "description": "Support Ticket System"
+}

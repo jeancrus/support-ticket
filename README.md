@@ -99,16 +99,15 @@ DELETE /tickets/:id
 
 ## 🔍 Filtros
 
-Os tickets podem ser filtrados por:
+Os tickets podem ser filtrados por status:
 
-- equipment
-- description
-- user_name
+- open
+- close
 
 Exemplo:
 
 ```http
-GET /tickets?equipment=Notebook&user_name=João
+GET /tickets?close=open
 ```
 
 ## 📦 Estrutura do Projeto

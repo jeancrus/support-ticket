@@ -53,17 +53,17 @@ export class Database {
     return { id, ...ticket };
   }
 
-  closeTicket(id) {
+  closeTicket(id, solution) {
     if (hasId(id, this.#database)) {
       return { error: "Ticket not found" };
     }
 
     this.#database.tickets = this.#database.tickets.map((p) =>
-      p.id === id ? { id, ...p, status: STATUS.closed } : p
+      p.id === id ? { id, ...p, status: STATUS.closed, solution } : p
     );
 
     this.#persist();
-    return { id };
+    return { id, solution };
   }
 
   deleteTicket(id) {

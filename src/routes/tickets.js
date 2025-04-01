@@ -1,6 +1,4 @@
-import { parseRoutePath } from "./utils/parseRoutePath.js";
-
-export const routes = [
+export const ticketsRoutes = [
   {
     path: "/tickets",
     method: "GET",
@@ -64,7 +62,4 @@ export const routes = [
         })
         .end(JSON.stringify(database.updateTicket(req.params.id, req.body))),
   },
-].map((route) => ({
-  ...route,
-  path: parseRoutePath(route.path),
-}));
+];

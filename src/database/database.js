@@ -7,6 +7,10 @@ const STATUS = {
   closed: "CLOSED",
 };
 
+const hasId = (id, database) => {
+  return database.tickets.findIndex((p) => p.id === id) === -1;
+};
+
 export class Database {
   #database = {};
 
@@ -37,6 +41,10 @@ export class Database {
   }
 
   updateTicket(id, ticket) {
+    if (hasId(id, this.#database)) {
+      return { error: "Ticket not found" };
+    }
+
     this.#database.tickets = this.#database.tickets.map((p) =>
       p.id === id ? { ...p, ...ticket } : p
     );
@@ -46,6 +54,10 @@ export class Database {
   }
 
   closeTicket(id) {
+    if (hasId(id, this.#database)) {
+      return { error: "Ticket not found" };
+    }
+
     this.#database.tickets = this.#database.tickets.map((p) =>
       p.id === id ? { id, ...p, status: STATUS.closed } : p
     );
@@ -55,6 +67,10 @@ export class Database {
   }
 
   deleteTicket(id) {
+    if (hasId(id, this.#database)) {
+      return { error: "Ticket not found" };
+    }
+
     this.#database.tickets = this.#database.tickets.filter((p) => p.id !== id);
 
     this.#persist();

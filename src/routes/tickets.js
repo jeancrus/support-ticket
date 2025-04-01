@@ -1,65 +1,33 @@
+import { close } from "../controllers/tickets/close.js";
+import { create } from "../controllers/tickets/create.js";
+import { list } from "../controllers/tickets/list.js";
+import { remove } from "../controllers/tickets/remove.js";
+import { update } from "../controllers/tickets/update.js";
+
 export const ticketsRoutes = [
   {
     path: "/tickets",
     method: "GET",
-    controller: ({ req, res, database }) =>
-      res
-        .writeHead(200, {
-          "Content-Type": "application/json",
-        })
-        .end(JSON.stringify(database.listTickets(req.query))),
+    controller: list,
   },
   {
     path: "/tickets",
     method: "POST",
-    controller: ({ req, res, database }) => {
-      if (
-        !req.body?.equipment ||
-        !req.body?.description ||
-        !req.body?.user_name
-      ) {
-        return res
-          .writeHead(400, {
-            "Content-Type": "text/html",
-          })
-          .end("Todos os campos são obrigatórios");
-      }
-
-      return res
-        .writeHead(200, {
-          "Content-Type": "text/html",
-        })
-        .end(JSON.stringify(database.createTicket(req.body)));
-    },
+    controller: create,
   },
   {
     path: "/tickets/:id/status",
     method: "PATCH",
-    controller: ({ req, res, database }) =>
-      res
-        .writeHead(200, {
-          "Content-Type": "text/html",
-        })
-        .end(JSON.stringify(database.closeTicket(req.params.id))),
+    controller: close,
   },
   {
     path: "/tickets/:id",
     method: "DELETE",
-    controller: ({ req, res, database }) =>
-      res
-        .writeHead(200, {
-          "Content-Type": "text/html",
-        })
-        .end(JSON.stringify(database.deleteTicket(req.params.id))),
+    controller: remove,
   },
   {
     path: "/tickets/:id",
     method: "PUT",
-    controller: ({ req, res, database }) =>
-      res
-        .writeHead(200, {
-          "Content-Type": "text/html",
-        })
-        .end(JSON.stringify(database.updateTicket(req.params.id, req.body))),
+    controller: update,
   },
 ];

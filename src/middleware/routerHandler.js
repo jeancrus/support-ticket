@@ -1,6 +1,6 @@
-import { Database } from "../database.js";
+import { Database } from "../database/database.js";
 import { routes } from "../routes/index.js";
-import { extractQueryParam } from "../utils/extract-query-param.js";
+import { extractQueryParam } from "../utils/extractQueryParams.js";
 
 const database = new Database();
 

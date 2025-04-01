@@ -64,7 +64,7 @@ export class Database {
   listTickets(query) {
     if (query.status) {
       return this.#database.tickets.filter(
-        (p) => p.status === STATUS[query.status]
+        (p) => p.status === STATUS[query.status.toLowerCase()]
       );
     }
 
